@@ -1,4 +1,4 @@
-Run multiple TimeTask by using ScheduledExecutorService rather than Timer because Timer will kill all running threads in case of failing to catch exceptions.
+使用 ScheduledExecutorService 而不是 Timer 运行多个 TimeTask，因为 Timer 将在未能捕获异常的情况下杀死所有正在运行的线程。
 <p>Examples:</p>
 <pre>
     //org.apache.commons.lang3.concurrent.BasicThreadFactory

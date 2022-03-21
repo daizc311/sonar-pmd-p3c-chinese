@@ -1,4 +1,4 @@
-Customized ThreadLocal variables must be recycled,especially when using thread pools in which threads are often reused. Otherwise, it may affect subsequent business logic and cause unexpected problems such as memory leak.
+自定义的 ThreadLocal 变量必须被回收，尤其是在使用线程池中线程经常被重用的时候。否则可能会影响后续业务逻辑，导致内存泄漏等意外问题。
 <p>Examples:</p>
 <pre>
     /**

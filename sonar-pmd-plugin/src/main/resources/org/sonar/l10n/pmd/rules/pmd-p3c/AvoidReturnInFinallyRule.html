@@ -1,4 +1,6 @@
-Never use return within a finally block. A return statement in a finally block will cause exceptions or result in a discarded return value in the try-catch block. Examples:
+永远不要在 finally 块中使用 return。 finally 块中的 return 语句将导致异常或导致 try-catch 块中的返回值被丢弃。
+<br>
+Examples:
 <pre>
     Negative example:
     public static Long readFileLength(String fileName) {

@@ -1,4 +1,5 @@
-Avoid using Random instance by multiple threads. Although it is safe to share this instance, competition on the same seed will damage performance. Note: Random instance includes instances of java.util.Random and Math.random().
+避免多个线程中使用 Random 实例。尽管共享此实例是安全的，但对同一种子的竞争会导致性能损耗。注意：Random 实例包括 java.util.Random 和 Math.random() 的实例。
+<br>
 Examples:
 <pre>
     Positive example 1：

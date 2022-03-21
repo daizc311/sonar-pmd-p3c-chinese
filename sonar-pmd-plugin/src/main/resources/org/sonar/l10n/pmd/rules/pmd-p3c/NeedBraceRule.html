@@ -1,7 +1,10 @@
-Braces are used with if, else, for, do and while statements, even if the body contains only a single statement. Avoid using the following example: if (condition) statements;
+if、else、for、do 和 while 语句需要与大括号一起使用，即使主体只包含一个语句。
 <p>Examples:</p>
 <pre>
-    if (flag) {
+    // Positive example:
+    if (condition) {
             System.out.println("hello world");
     }
+    // Negative example:
+    if (condition) statements;
 </pre>

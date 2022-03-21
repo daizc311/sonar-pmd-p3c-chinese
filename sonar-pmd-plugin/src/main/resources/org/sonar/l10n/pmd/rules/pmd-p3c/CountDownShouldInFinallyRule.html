@@ -1,5 +1,4 @@
-When using CountDownLatch to convert asynchronous operations to synchronous ones,each thread must call countdown method before quitting. Make sure to catch any exception during thread running, to let countdown method be executed. If main thread cannot reach await method, program will return until timeout.
-<p>Examples:</p>
+使用 CountDownLatch 将异步操作转换为同步操作时，每个线程必须在退出前调用 countdown 方法。确保在线程运行期间捕获任何异常，以执行倒计时方法。如果主线程无法到达 await 方法，程序将返回直到超时。<p>Examples:</p>
 <pre>
     /**
      * @author caikang
