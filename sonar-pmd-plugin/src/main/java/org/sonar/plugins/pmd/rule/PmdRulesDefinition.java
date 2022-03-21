@@ -60,15 +60,19 @@ public final class PmdRulesDefinition implements RulesDefinition {
 
     @Override
     public void define(Context context) {
-        NewRepository repository = context
+        // pwd
+        NewRepository pwdRepo = context
                 .createRepository(PmdConstants.REPOSITORY_KEY, PmdConstants.LANGUAGE_KEY)
                 .setName(PmdConstants.REPOSITORY_NAME);
 
-        extractRulesData(repository, "/org/sonar/plugins/pmd/rules.xml", "/org/sonar/l10n/pmd/rules/pmd");
+        extractRulesData(pwdRepo, "/org/sonar/plugins/pmd/rules.xml", "/org/sonar/l10n/pmd/rules/pmd");
 
         // p3c
-        extractRulesData(repository, "/org/sonar/plugins/pmd/rules-p3c.xml", "/org/sonar/l10n/pmd/rules/pmd-p3c");
-        repository.done();
+        NewRepository aliRepo = context
+                .createRepository(PmdConstants.REPOSITORY_KEY_ALI, PmdConstants.LANGUAGE_KEY)
+                .setName(PmdConstants.REPOSITORY_NAME_ALI);
+        extractRulesData(aliRepo, "/org/sonar/plugins/pmd/rules-p3c.xml", "/org/sonar/l10n/pmd/rules/pmd-p3c");
+        pwdRepo.done();
     }
 
     private static void loadNames(NewRepository repository) {
