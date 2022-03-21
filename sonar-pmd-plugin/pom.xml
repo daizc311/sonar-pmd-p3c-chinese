@@ -10,6 +10,7 @@
 
   <artifactId>sonar-pmd-plugin</artifactId>
   <packaging>sonar-plugin</packaging>
+  <version>3.2.2-chinese</version>
 
   <name>SonarQube PMD Plugin</name>
   <description>Sonar-PMD is a plugin that provides coding rules from PMD.</description>
