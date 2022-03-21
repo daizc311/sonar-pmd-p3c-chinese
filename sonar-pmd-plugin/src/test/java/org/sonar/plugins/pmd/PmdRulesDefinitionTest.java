@@ -38,14 +38,18 @@ class PmdRulesDefinitionTest {
         PmdRulesDefinition definition = new PmdRulesDefinition();
         RulesDefinition.Context context = new RulesDefinition.Context();
         definition.define(context);
-        RulesDefinition.Repository repository = context.repository(PmdConstants.REPOSITORY_KEY);
+        testRepositoryRulesSize(context, PmdConstants.REPOSITORY_KEY, PmdConstants.REPOSITORY_NAME, 268);
+        testRepositoryRulesSize(context, PmdConstants.REPOSITORY_KEY_ALI, PmdConstants.REPOSITORY_NAME_ALI, 56);
+    }
 
-        assertThat(repository.name()).isEqualTo(PmdConstants.REPOSITORY_NAME);
+    private void testRepositoryRulesSize(RulesDefinition.Context context, String repoKey, String repoName, Integer size) {
+        RulesDefinition.Repository repository = context.repository(repoKey);
+
+        assertThat(repository.name()).isEqualTo(repoName);
         assertThat(repository.language()).isEqualTo(PmdConstants.LANGUAGE_KEY);
 
         List<Rule> rules = repository.rules();
-//        assertThat(rules).hasSize(268);
-//        assertThat(rules).hasSize(321);
+        assertThat(rules).hasSize(size);
 
         for (Rule rule : rules) {
             assertThat(rule.key()).isNotNull();

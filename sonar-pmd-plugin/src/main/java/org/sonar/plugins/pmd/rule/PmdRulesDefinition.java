@@ -58,28 +58,11 @@ public final class PmdRulesDefinition implements RulesDefinition {
         ruleLoader.load(repository, PmdRulesDefinition.class.getResourceAsStream("/com/sonar/sqale/pmd-model.xml"), "UTF-8");
     }
 
-    @Override
-    public void define(Context context) {
-        // pwd
-        NewRepository pwdRepo = context
-                .createRepository(PmdConstants.REPOSITORY_KEY, PmdConstants.LANGUAGE_KEY)
-                .setName(PmdConstants.REPOSITORY_NAME);
-
-        extractRulesData(pwdRepo, "/org/sonar/plugins/pmd/rules.xml", "/org/sonar/l10n/pmd/rules/pmd");
-
-        // p3c
-        NewRepository aliRepo = context
-                .createRepository(PmdConstants.REPOSITORY_KEY_ALI, PmdConstants.LANGUAGE_KEY)
-                .setName(PmdConstants.REPOSITORY_NAME_ALI);
-        extractRulesData(aliRepo, "/org/sonar/plugins/pmd/rules-p3c.xml", "/org/sonar/l10n/pmd/rules/pmd-p3c");
-        pwdRepo.done();
-    }
-
     private static void loadNames(NewRepository repository) {
 
         Properties properties = new Properties();
 
-        try (InputStream stream = PmdRulesDefinition.class.getResourceAsStream("/org/sonar/l10n/pmd.properties")) {
+        try (InputStream stream = PmdRulesDefinition.class.getResourceAsStream("/org/sonar/l10n/" + repository.key() + ".properties")) {
             // 解决 p3c 中文标题乱码问题
             properties.load(new InputStreamReader(stream, StandardCharsets.UTF_8));
         } catch (IOException e) {
@@ -101,5 +84,23 @@ public final class PmdRulesDefinition implements RulesDefinition {
                 }
             }
         }
+    }
+
+    @Override
+    public void define(Context context) {
+        // pwd
+        NewRepository pwdRepo = context
+                .createRepository(PmdConstants.REPOSITORY_KEY, PmdConstants.LANGUAGE_KEY)
+                .setName(PmdConstants.REPOSITORY_NAME);
+
+        extractRulesData(pwdRepo, "/org/sonar/plugins/pmd/rules.xml", "/org/sonar/l10n/pmd/rules/pmd");
+
+        // p3c
+        NewRepository aliRepo = context
+                .createRepository(PmdConstants.REPOSITORY_KEY_ALI, PmdConstants.LANGUAGE_KEY)
+                .setName(PmdConstants.REPOSITORY_NAME_ALI);
+        extractRulesData(aliRepo, "/org/sonar/plugins/pmd/rules-p3c.xml", "/org/sonar/l10n/pmd/rules/pmd-p3c");
+        pwdRepo.done();
+        aliRepo.done();
     }
 }
