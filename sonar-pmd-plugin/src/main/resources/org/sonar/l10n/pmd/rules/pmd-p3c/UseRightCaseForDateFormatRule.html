@@ -2,9 +2,7 @@
 如果一周跨越两年，则返回的“YYYY”代表下一年。
 <p>Examples:</p>
 <pre>
-Negative example:
-    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    
-Positive example:
-        SimpleDateFormat format = new SimpleDateFormat("YYYY-mm-dd HH:mm:ss");
+    正例：表示日期和时间的格式如下所示:
+        new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+    反例：某程序员因使用 YYYY/MM/dd 进行日期格式化，2017/12/31 执行结果为 2018/12/31，造成线上故障
 </pre>
